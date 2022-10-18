@@ -1,4 +1,4 @@
-# crud-js
+# MERN-js
 
 M = MongoDb
 E = Express
