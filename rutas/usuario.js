@@ -89,3 +89,7 @@ router.post('/borrarusuario', (req, res) => {
     })
 })
 
+
+router.post('/logi', (req, res) => {
+   res.send(req.body)
+})

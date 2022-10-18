@@ -32,10 +32,13 @@ function UsuarioIndividual({usuario}){
 
                 <div className="col-sm-6 offset-3" data-aos="flip-right">
                     <ul className="list-group">
-                        <li className="list-group-item">{usuario.idusuario}</li>
-                        <li className="list-group-item">{usuario.nombre}</li>
-                        <li className="list-group-item">{usuario.email}</li>
-                        <li className="list-group-item">{usuario.telefono}</li>
+                        <li className='list-group-item'>Id:</li>
+                        <li className="list-group-item text-white">{usuario.id}</li>
+                        <li className='list-group-item'>User Name:</li>
+                        <li className="list-group-item text-white">{usuario.name}</li>
+                        <li className='list-group-item'>Email:</li>
+                        <li className="list-group-item text-white">{usuario.email}</li>
+                        
                     </ul>
 
                     <Link to={`/editarusuario/${usuario.idusuario}`}><li className="btn btn-success">Editar</li></Link>

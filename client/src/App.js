@@ -1,9 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
 import ListaUsuarios from './ListaUsuarios';
 import AgregarUsuario from './AgregarUsuario';
 import EditarUsuario from './EditarUsuario';
+import Login from './Login';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
+
+
 
 function App() {
   return (
@@ -17,19 +19,24 @@ function App() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">Inicio</a>
+                <a className="nav-link active" aria-current="page" href="/">Home</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="agregarusuario">Agregar Usuario</a>
-              </li>                        
+                <a className="nav-link" href="agregarusuario">Add User</a>
+              </li> 
+              <li className="nav-item">
+                <a className="nav-link" href="login">Login</a>
+              </li>                         
             </ul>           
           </div>
+          
         </div>
       </nav>
      
     <BrowserRouter>
         <Routes>
           <Route path='/' element={<ListaUsuarios/>} exact></Route>
+          <Route path='/login' element={<Login/>} exact></Route>
           <Route path='/agregarusuario' element={<AgregarUsuario/>} exact></Route>
           <Route path='/editarusuario/:idusuario' element={<EditarUsuario/>} exact></Route>
         </Routes>

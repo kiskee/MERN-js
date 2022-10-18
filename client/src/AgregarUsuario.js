@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import uniquid from 'uniqid'
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router'
 
 function AgregarUsuario(){
 
@@ -10,6 +11,8 @@ function AgregarUsuario(){
     const[email, setEmail]=useState('')
     const[telefono, setTelefono]=useState('')
     
+
+    const navegar = useNavigate()
 
     function agregarUsuario(){
         var usuario = {
@@ -24,6 +27,7 @@ function AgregarUsuario(){
         .then(res => {
             //alert(res.data)
             Swal.fire('Felicidades', 'El usuario se creó con éxito')
+            navegar('/')
         })
         .then(err => {console.log(err)})
     }
@@ -33,13 +37,13 @@ function AgregarUsuario(){
     return(
         <div className="container">
             <div className="row">
-                     <h2 className="mt-4">Crear un nuevo usuario</h2>               
+                     <h2 className="mt-4">Create a new user</h2>               
             </div> 
 
              <div className="row">
                 <div className="col-sm-6 offset-3">
                      <div className="mb-3">
-                        <label htmlFor="nombre" className="form-label">Nombre</label>
+                        <label htmlFor="nombre" className="form-label">User Name</label>
                         <input type="text" className="form-control" value={nombre} onChange={(e) => {setNombre(e.target.value)}}></input>
                      </div>
 
@@ -49,11 +53,11 @@ function AgregarUsuario(){
                      </div>
 
                      <div className="mb-3">
-                        <label htmlFor="telefono" className="form-label">Teléfono</label>
-                        <input type="text" className="form-control" value={telefono} onChange={(e) => {setTelefono(e.target.value)}}></input>
+                        <label htmlFor="telefono" className="form-label">Password</label>
+                        <input type="password" className="form-control" value={telefono} onChange={(e) => {setTelefono(e.target.value)}}></input>
                      </div>
 
-                     <button onClick={agregarUsuario} className="btn btn-success">Guardar Usuario</button>
+                     <button onClick={agregarUsuario} className="btn btn-success">Create</button>
                 </div>
             </div>          
         </div>
