@@ -8,8 +8,13 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 
 
 function App() {
-  return (
-    <div className="App">   
+
+  const renderLoginForm = ()=>{
+    return(Login)
+  }
+
+  const  nose = () =>{
+    return(
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container">
           <a className="navbar-brand" href="/">Asistance Control</a>
@@ -33,10 +38,25 @@ function App() {
         </div>
       </nav>
      
-    <BrowserRouter>
+    
+
+   
+    )
+  }
+  return (
+    
+    
+
+    <div className="App">   
+      
+      {renderLoginForm()}
+      {nose()}
+
+
+      <BrowserRouter>
         <Routes>
-          <Route path='/' element={<ListaUsuarios/>} exact></Route>
-          <Route path='/login' element={<Login/>} exact></Route>
+          <Route path='/login' element={<ListaUsuarios/>} exact></Route>
+          <Route path='/' element={<Login/>} exact></Route>
           <Route path='/agregarusuario' element={<AgregarUsuario/>} exact></Route>
           <Route path='/editarusuario/:idusuario' element={<EditarUsuario/>} exact></Route>
         </Routes>

@@ -91,5 +91,11 @@ router.post('/borrarusuario', (req, res) => {
 
 
 router.post('/logi', (req, res) => {
-   res.send(req.body)
+    UserModel.find({email:req.body.useremail}, function(docs, err){
+        if(!err){
+            res.send(docs)
+        }else{
+            res.send(err)
+        }
+    })
 })
