@@ -3,21 +3,46 @@ import uniquid from 'uniqid'
 import axios from 'axios'
 import { useNavigate } from 'react-router'
 import Swal from 'sweetalert2'
+import { useEffect } from 'react';
 
 
 function Login(){
+
+    useEffect(()=>{
+        
+        const loggedUserJSON = window.localStorage.getItem('loggedAppUser')
+        if (loggedUserJSON){
+         
+        window.location.href ="http://localhost:3000/login";
+       
+         /*   const user  = JSON.parse(loggedUserJSON)
+          console.log(user)*/
+        }
+      }, [])
+
 
      //Hooks
      const[useremail, setUseremail]=useState('')
      const[password, setPassword]=useState('')
      const[user, setUser]=useState(null)
 
-     const nav = useNavigate()
      
+
+     const nav = useNavigate()
+     let token = null
+    const setToken = newToken =>{
+        token = newToken
+    }
+
+     const config = {
+        headers:{
+            Authorization: token
+        }
+     }
 
 
      const logi = async credentials =>{
-        const {data} = await axios.post('/api/usuario/logi', credentials)
+        const {data} = await axios.post('/api/usuario/logi', credentials, config)
         return data
     }
 
@@ -28,12 +53,20 @@ function Login(){
       const useri = await logi({
         useremail
       })
-      console.log(useri[0].password)
+      setToken(useri[0].id)
+      setUser(useri[0])
+     
+      window.localStorage.setItem(
+        'loggedAppUser', JSON.stringify(user)
+      )
+      /*
       if(useri[0].password==password){
         nav('login')
       }else{
         Swal.fire('ERORR', 'Password dont match')
       }
+      */
+
     } catch (e) {
         Swal.fire('ERORR', 'Email not register')
     }
