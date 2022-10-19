@@ -2,12 +2,19 @@
 import Logout from './logout'
 
 function Nav(){
-
-
-
-
-
-   
+        
+    
+    const render = ()=>{
+        if (window.sessionStorage.getItem('loggedAppUser')!="{}"){
+            return(
+                Logout()
+             )
+        }else{
+            return(
+                <div></div>
+            )
+        }    
+    }
 
     return(
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -29,7 +36,9 @@ function Nav(){
               </li>                         
             </ul>           
           </div>
-            <Logout/>
+           {
+            render()
+           }
         </div>
       </nav>
     )
