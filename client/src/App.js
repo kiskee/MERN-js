@@ -14,9 +14,7 @@ function App() {
     window.sessionStorage.setItem(
       'loggedAppUser', JSON.stringify({})
     )
-  }
- 
-
+ }
   
   console.log(window.sessionStorage.getItem('loggedAppUser'))
   
@@ -34,7 +32,7 @@ function App() {
         <Routes>
           <Route path='/login' element={<ListaUsuarios/>} exact></Route>
           <Route path='/' element={<Login/>} exact></Route>
-          <Route path='/agregarusuario' element={<Adduser/>} exact></Route>
+          <Route path='/adduser' element={<Adduser/>} exact></Route>
           <Route path='/editarusuario/:idusuario' element={<EditarUsuario/>} exact></Route>
         </Routes>
     </BrowserRouter>     

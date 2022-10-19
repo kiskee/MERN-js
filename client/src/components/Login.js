@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router'
 import Swal from 'sweetalert2'
+import md5 from 'md5'
 
 
 function Login(){
@@ -18,7 +19,7 @@ function Login(){
       const useri = await logi({
         useremail
       })
-      if(useri[0].password==password){
+      if(useri[0].password==md5(password)){
         nav('login')
         window.sessionStorage.setItem(
           'loggedAppUser', JSON.stringify(useri.shift().password)
@@ -48,7 +49,7 @@ function Login(){
                   <button onClick={login} className="btn btn-lg btn-danger">LOGIN</button>
                   <center>
                   <p className="text-white mt-4">Have an account?</p>
-                  <h6><a className="text-info" href="http://localhost:3000/agregarusuario">Register here</a></h6>
+                  <h6><a className="text-info" href="http://localhost:3000/adduser">Register here</a></h6>
                 </center>
               </div>
           </div>           

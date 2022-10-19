@@ -3,31 +3,38 @@ import uniquid from 'uniqid'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router'
+import md5 from 'md5'
 
-function AgregarUsuario(){
+function Adduser(){
 
     //Hooks
-    const[nombre, setNombre]=useState('')
+    const[name, setName]=useState('')
     const[email, setEmail]=useState('')
-    const[telefono, setTelefono]=useState('')
+    const[password, setPassword]=useState('')
     
 
-    const navegar = useNavigate()
+    const nav = useNavigate()
 
-    function agregarUsuario(){
-        var usuario = {
-            nombre: nombre,
+    function adduser(){
+        var user = {
+            name: name,
             email: email,
-            telefono: telefono,
-            idusuario: uniquid()
+            password: md5(password),
+            id: uniquid()
         }
-        console.log(usuario)
+        console.log(user)
 
-        axios.post('/api/usuario/agregarusuario', usuario)
+        axios.post('/api/usuario/adduser', user)
         .then(res => {
             //alert(res.data)
-            Swal.fire('Felicidades', 'El usuario se creó con éxito')
-            navegar('/')
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'User Created',
+                showConfirmButton: false,
+                timer: 1500
+              })
+              nav('/')
         })
         .then(err => {console.log(err)})
     }
@@ -43,8 +50,8 @@ function AgregarUsuario(){
              <div className="row">
                 <div className="col-sm-6 offset-3">
                      <div className="mb-3">
-                        <label htmlFor="nombre" className="form-label">User Name</label>
-                        <input type="text" className="form-control" value={nombre} onChange={(e) => {setNombre(e.target.value)}}></input>
+                        <label htmlFor="name" className="form-label">User Name</label>
+                        <input type="text" className="form-control" value={name} onChange={(e) => {setName(e.target.value)}}></input>
                      </div>
 
                      <div className="mb-3">
@@ -53,15 +60,19 @@ function AgregarUsuario(){
                      </div>
 
                      <div className="mb-3">
-                        <label htmlFor="telefono" className="form-label">Password</label>
-                        <input type="password" className="form-control" value={telefono} onChange={(e) => {setTelefono(e.target.value)}}></input>
+                        <label htmlFor="password" className="form-label">Password</label>
+                        <input type="password" className="form-control" value={password} onChange={(e) => {setPassword(e.target.value)}}></input>
                      </div>
 
-                     <button onClick={agregarUsuario} className="btn btn-success">Create</button>
+                     <button onClick={adduser} className="btn btn-success">Create</button>
+                     <center>
+                  <p className="text-white mt-4">Have an account?</p>
+                  <h6><a className="text-info" href="http://localhost:3000/">Login here</a></h6>
+                </center>
                 </div>
             </div>          
         </div>
     )
 }
 
-export default AgregarUsuario
+export default Adduser

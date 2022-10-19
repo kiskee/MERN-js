@@ -20,12 +20,12 @@ router.get('/ejemplo', (req, res) => {
 })*/
 
 //Agregar usuario
-router.post('/agregarusuario', (req, res) => {
+router.post('/adduser', (req, res) => {
     const nuevousuario = new UserModel({
-        name: req.body.nombre,
+        name: req.body.name,
         email: req.body.email,
-        password: req.body.telefono,
-        id: req.body.idusuario
+        password: req.body.password,
+        id: req.body.id
     })
     nuevousuario.save(function(err){
         if(!err){
