@@ -25,11 +25,21 @@ function Login(){
           'loggedAppUser', JSON.stringify(useri.shift().password)
         )
       }else{
-        Swal.fire('ERORR', 'Password dont match')
+        Swal.fire({
+          title: 'Password dont match!',
+          text: 'ERROR',
+          icon: 'error',
+          confirmButtonText: 'Cool'
+        })
       }
     } catch (e) {
         Swal.fire('ERORR', 'Email not register')
-        console.log(e)
+        Swal.fire({
+          title: 'Email not register',
+          text: 'ERORR',
+          icon: 'error',
+          confirmButtonText: 'Cool'
+        })
     }
     }
 

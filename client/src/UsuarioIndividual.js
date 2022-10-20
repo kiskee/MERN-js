@@ -3,6 +3,7 @@ import axios from 'axios'
 import {Link, useNavigate} from 'react-router-dom'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
+import Swal from 'sweetalert2'
 
 function UsuarioIndividual({usuario}){
 
@@ -18,7 +19,13 @@ function UsuarioIndividual({usuario}){
     function borrarusuario(idusuario){
         axios.post('/api/usuario/borrarusuario', {idusuario: idusuario}).then(res => {
             console.log(res.data) 
-            alert(res.data)  
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'User delete',
+                showConfirmButton: false,
+                timer: 300
+              })
             navegar(0)
         }).catch(err => {
             console.log(err)

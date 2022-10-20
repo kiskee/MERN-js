@@ -5,6 +5,7 @@ import EditarUsuario from './EditarUsuario';
 import Login from './components/Login';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Nav from './components/nav'
+import Add from './components/Add'
 
 
 
@@ -33,6 +34,7 @@ function App() {
           <Route path='/login' element={<ListaUsuarios/>} exact></Route>
           <Route path='/' element={<Login/>} exact></Route>
           <Route path='/adduser' element={<Adduser/>} exact></Route>
+          <Route path='/add' element={<Add/>} exact></Route>
           <Route path='/editarusuario/:idusuario' element={<EditarUsuario/>} exact></Route>
         </Routes>
     </BrowserRouter>     

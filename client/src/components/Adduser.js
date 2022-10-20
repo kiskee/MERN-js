@@ -15,28 +15,29 @@ function Adduser(){
 
     const nav = useNavigate()
 
-    function adduser(){
-        var user = {
-            name: name,
-            email: email,
-            password: md5(password),
-            id: uniquid()
-        }
-        console.log(user)
+    const user = {
+        name: name,
+        email: email,
+        password: md5(password),
+        id: uniquid()
+    }
 
-        axios.post('/api/usuario/adduser', user)
-        .then(res => {
-            //alert(res.data)
-            Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'User Created',
-                showConfirmButton: false,
-                timer: 1500
-              })
-              nav('/')
-        })
-        .then(err => {console.log(err)})
+    function adduser(){
+
+             axios.post('/api/usuario/adduser', user)
+                .then(res => {
+                    //alert(res.data)
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'User Created',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                      nav('/')
+                })
+                .then(err => {console.log(err)})
+       
     }
 
 
@@ -48,28 +49,34 @@ function Adduser(){
             </div> 
 
              <div className="row">
-                <div className="col-sm-6 offset-3">
-                     <div className="mb-3">
+
+            <form className='col-sm-6 offset-3'>
+            <div className="mb-3">
                         <label htmlFor="name" className="form-label">User Name</label>
-                        <input type="text" className="form-control" value={name} onChange={(e) => {setName(e.target.value)}}></input>
+                        <input type="text" className="form-control" required value={name} onChange={(e) => {setName(e.target.value)}}></input>
                      </div>
 
                      <div className="mb-3">
                         <label htmlFor="email" className="form-label">Email</label>
-                        <input type="email" className="form-control" value={email} onChange={(e) => {setEmail(e.target.value)}}></input>
+                        <input type="email" className="form-control" required value={email} onChange={(e) => {setEmail(e.target.value)}}></input>
                      </div>
 
                      <div className="mb-3">
                         <label htmlFor="password" className="form-label">Password</label>
-                        <input type="password" className="form-control" value={password} onChange={(e) => {setPassword(e.target.value)}}></input>
+                        <input type="password" className="form-control" required value={password} onChange={(e) => {setPassword(e.target.value)}}></input>
                      </div>
 
-                     <button onClick={adduser} className="btn btn-success">Create</button>
+                     <button onClick={()=>adduser()} className="btn btn-success">Create</button>
                      <center>
                   <p className="text-white mt-4">Have an account?</p>
                   <h6><a className="text-info" href="http://localhost:3000/">Login here</a></h6>
                 </center>
-                </div>
+                
+                 </form>
+
+
+
+                
             </div>          
         </div>
     )

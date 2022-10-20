@@ -33,7 +33,10 @@ function Nav(){
               </li> 
               <li className="nav-item">
                 <a className="nav-link" href="login">Login</a>
-              </li>                         
+              </li>    
+              <li className="nav-item">
+                <a className="nav-link" href="add">New Add</a>
+              </li>                       
             </ul>           
           </div>
            {
